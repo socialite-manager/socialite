@@ -16,6 +16,7 @@ abstract class AbstractProvider implements ProviderContract
      * @var \Symfony\Component\HttpFoundation\Request
      */
     protected $request;
+
     /**
      * The OAuth server implementation.
      *
@@ -125,6 +126,18 @@ abstract class AbstractProvider implements ProviderContract
     public function setRequest(Request $request)
     {
         $this->request = $request;
+        return $this;
+    }
+
+    /**
+     * Set the server instance.
+     *
+     * @param \League\OAuth1\Client\Server\Server $server
+     * @return $this
+     */
+    public function setSever(Server $server)
+    {
+        $this->server = $server;
         return $this;
     }
 }
