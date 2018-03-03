@@ -1,0 +1,29 @@
+{
+    "name": "mosaxiv/socialite",
+    "description": "OAuth 1 & OAuth 2 libraries.",
+    "keywords": [
+        "oauth",
+        "socialite"
+    ],
+    "license": "MIT",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "league/oauth1-client": "^1.7",
+        "symfony/http-foundation": "^3.4"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "mosaxiv\\Socialite\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "cs-check": "phpcs --standard=PSR2 --colors -p ./src ./tests",
+        "cs-fix": "phpcbf --standard=PSR2 --colors ./src ./tests"
+    }
+}
