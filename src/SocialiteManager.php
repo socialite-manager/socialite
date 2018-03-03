@@ -78,7 +78,8 @@ class SocialiteManager
     protected function twitterProvider()
     {
         return new TwitterProvider(
-            $this->getRequest(), new TwitterServer($this->formatConfig())
+            $this->getRequest(),
+            new TwitterServer($this->formatConfig())
         );
     }
 
