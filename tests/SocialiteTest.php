@@ -4,6 +4,7 @@ namespace mosaxiv\Socialite\Tests;
 
 use mosaxiv\Socialite\One\TwitterProvider;
 use mosaxiv\Socialite\Socialite;
+use mosaxiv\Socialite\Two\GithubProvider;
 use PHPUnit\Framework\TestCase;
 
 class SocialiteTest extends TestCase
@@ -17,5 +18,12 @@ class SocialiteTest extends TestCase
         ];
 
         $this->assertInstanceOf(TwitterProvider::class, Socialite::driver('twitter', $config));
+        $this->assertInstanceOf(GithubProvider::class, Socialite::driver('github', $config));
+    }
+
+    public function testDriverError()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        Socialite::driver('twitter', []);
     }
 }
