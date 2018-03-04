@@ -21,10 +21,20 @@
             "mosaxiv\\Socialite\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "mosaxiv\\Socialite\\Tests\\": "tests/"
+        }
+    },
     "config": {
         "sort-packages": true
     },
     "scripts": {
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "test": "phpunit",
         "cs-check": "phpcs --standard=PSR2 --colors -p ./src ./tests",
         "cs-fix": "phpcbf --standard=PSR2 --colors ./src ./tests"
     }

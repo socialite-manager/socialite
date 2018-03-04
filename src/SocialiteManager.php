@@ -17,11 +17,7 @@ class SocialiteManager
      *
      * @var array
      */
-    protected $config = [
-        'client_id' => '',
-        'client_secret' => '',
-        'redirect' => '',
-    ];
+    protected $config = [];
 
     /**
      * The request instance.
