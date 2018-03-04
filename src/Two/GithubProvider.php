@@ -33,7 +33,8 @@ class GithubProvider extends AbstractProvider implements ProviderInterface
     {
         $userUrl = 'https://api.github.com/user?access_token=' . $token;
         $response = $this->getHttpClient()->get(
-            $userUrl, $this->getRequestOptions()
+            $userUrl,
+            $this->getRequestOptions()
         );
         $user = json_decode($response->getBody(), true);
         if (in_array('user:email', $this->scopes)) {
@@ -52,7 +53,8 @@ class GithubProvider extends AbstractProvider implements ProviderInterface
     {
         $emailsUrl = 'https://api.github.com/user/emails?access_token=' . $token;
         $response = $this->getHttpClient()->get(
-            $emailsUrl, $this->getRequestOptions()
+            $emailsUrl,
+            $this->getRequestOptions()
         );
         foreach (json_decode($response->getBody(), true) as $email) {
             if ($email['primary'] && $email['verified']) {
