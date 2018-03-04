@@ -1,8 +1,7 @@
 <?php
-namespace Laravel\Socialite\Two;
+namespace mosaxiv\Socialite\Two;
 
 use GuzzleHttp\Client;
-use mosaxiv\Socialite\Two\InvalidStateException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use mosaxiv\Socialite\Contracts\Provider as ProviderContract;

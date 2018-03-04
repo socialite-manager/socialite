@@ -3,6 +3,7 @@ namespace mosaxiv\Socialite;
 
 use mosaxiv\Socialite\Contracts\Provider;
 use mosaxiv\Socialite\One\TwitterProvider;
+use mosaxiv\Socialite\Two\GithubProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use League\OAuth1\Client\Server\Twitter as TwitterServer;
@@ -33,6 +34,7 @@ class SocialiteManager
      */
     protected $drivers = [
         'twitter' => TwitterProvider::class,
+        'github' => GithubProvider::class,
     ];
 
     /**
@@ -42,6 +44,10 @@ class SocialiteManager
      */
     public function __construct(array $config)
     {
+        if (!isset($config['client_id'], $config['redirect'], $config['client_secret'])) {
+            throw new \InvalidArgumentException('client_id/redirect/client_secret is required');
+        }
+
         $this->config = $config;
     }
 
