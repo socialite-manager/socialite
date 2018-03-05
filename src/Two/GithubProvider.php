@@ -52,10 +52,14 @@ class GithubProvider extends AbstractProvider implements ProviderInterface
     protected function getEmailByToken($token)
     {
         $emailsUrl = 'https://api.github.com/user/emails?access_token=' . $token;
-        $response = $this->getHttpClient()->get(
-            $emailsUrl,
-            $this->getRequestOptions()
-        );
+        try {
+            $response = $this->getHttpClient()->get(
+                $emailsUrl,
+                $this->getRequestOptions()
+            );
+        } catch (\Exception $e) {
+            return;
+        }
         foreach (json_decode($response->getBody(), true) as $email) {
             if ($email['primary'] && $email['verified']) {
                 return $email['email'];

@@ -3,7 +3,11 @@ namespace mosaxiv\Socialite;
 
 use mosaxiv\Socialite\Contracts\Provider;
 use mosaxiv\Socialite\One\TwitterProvider;
+use mosaxiv\Socialite\Two\BitbucketProvider;
+use mosaxiv\Socialite\Two\FacebookProvider;
 use mosaxiv\Socialite\Two\GithubProvider;
+use mosaxiv\Socialite\Two\GoogleProvider;
+use mosaxiv\Socialite\Two\LinkedInProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use League\OAuth1\Client\Server\Twitter as TwitterServer;
@@ -35,6 +39,10 @@ class SocialiteManager
     protected $drivers = [
         'twitter' => TwitterProvider::class,
         'github' => GithubProvider::class,
+        'google' => GoogleProvider::class,
+        'facebook' => FacebookProvider::class,
+        'bitbucket' => BitbucketProvider::class,
+        'linkedin' => LinkedInProvider::class,
     ];
 
     /**
