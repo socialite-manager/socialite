@@ -14,60 +14,70 @@ abstract class AbstractProvider implements ProviderContract
      * @var \Symfony\Component\HttpFoundation\Request
      */
     protected $request;
+
     /**
      * The HTTP Client instance.
      *
      * @var \GuzzleHttp\Client
      */
     protected $httpClient;
+
     /**
      * The client ID.
      *
      * @var string
      */
     protected $clientId;
+
     /**
      * The client secret.
      *
      * @var string
      */
     protected $clientSecret;
+
     /**
      * The redirect URL.
      *
      * @var string
      */
     protected $redirectUrl;
+
     /**
      * The custom parameters to be sent with the request.
      *
      * @var array
      */
     protected $parameters = [];
+
     /**
      * The scopes being requested.
      *
      * @var array
      */
     protected $scopes = [];
+
     /**
      * The separating character for the requested scopes.
      *
      * @var string
      */
     protected $scopeSeparator = ',';
+
     /**
      * The type of the encoding in the query.
      *
      * @var int Can be either PHP_QUERY_RFC3986 or PHP_QUERY_RFC1738.
      */
     protected $encodingType = PHP_QUERY_RFC1738;
+
     /**
      * Indicates if the session state should be utilized.
      *
      * @var bool
      */
     protected $stateless = false;
+
     /**
      * The custom Guzzle configuration options.
      *
@@ -79,8 +89,8 @@ abstract class AbstractProvider implements ProviderContract
      * Create a new provider instance.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param  array $config
-     * @param  array $guzzle
+     * @param array $config
+     * @param array $guzzle
      */
     public function __construct(Request $request, array $config, array $guzzle = [])
     {
@@ -94,10 +104,10 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Get the authentication URL for the provider.
      *
-     * @param  string $state
+     * @param string $state
      * @return string
      */
-    abstract protected function getAuthUrl($state);
+    abstract protected function getAuthUrl(string $state);
 
     /**
      * Get the token URL for the provider.
@@ -109,15 +119,15 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Get the raw user for the given access token.
      *
-     * @param  string $token
+     * @param string $token
      * @return array
      */
-    abstract protected function getUserByToken($token);
+    abstract protected function getUserByToken(string $token);
 
     /**
      * Map the raw user array to a Socialite User instance.
      *
-     * @param  array $user
+     * @param array $user
      * @return \mosaxiv\Socialite\Two\User
      */
     abstract protected function mapUserToObject(array $user);
@@ -140,11 +150,11 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Get the authentication URL for the provider.
      *
-     * @param  string $url
-     * @param  string $state
+     * @param string $url
+     * @param string $state
      * @return string
      */
-    protected function buildAuthUrlFromBase($url, $state)
+    protected function buildAuthUrlFromBase(string $url, string $state)
     {
         return $url . '?' . http_build_query($this->getCodeFields($state), '', '&', $this->encodingType);
     }
@@ -152,7 +162,7 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Get the GET parameters for the code request.
      *
-     * @param  string|null $state
+     * @param string|null $state
      * @return array
      */
     protected function getCodeFields($state = null)
@@ -172,8 +182,8 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Format the given scopes.
      *
-     * @param  array $scopes
-     * @param  string $scopeSeparator
+     * @param array $scopes
+     * @param string $scopeSeparator
      * @return string
      */
     protected function formatScopes(array $scopes, $scopeSeparator)
@@ -200,10 +210,10 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Get a Social User instance from a known access token.
      *
-     * @param  string $token
+     * @param string $token
      * @return \mosaxiv\Socialite\Two\User
      */
-    public function userFromToken($token)
+    public function userFromToken(string $token)
     {
         $user = $this->mapUserToObject($this->getUserByToken($token));
         return $user->setToken($token);
@@ -227,10 +237,10 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Get the access token response for the given code.
      *
-     * @param  string $code
+     * @param string $code
      * @return array
      */
-    public function getAccessTokenResponse($code)
+    public function getAccessTokenResponse(string $code)
     {
         $response = $this->getHttpClient()->post($this->getTokenUrl(), [
             'headers' => ['Accept' => 'application/json'],
@@ -242,10 +252,10 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Get the POST fields for the token request.
      *
-     * @param  string $code
+     * @param string $code
      * @return array
      */
-    protected function getTokenFields($code)
+    protected function getTokenFields(string $code)
     {
         return [
             'client_id' => $this->clientId,
@@ -268,7 +278,7 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Merge the scopes of the requested access.
      *
-     * @param  array|string $scopes
+     * @param array|string $scopes
      * @return $this
      */
     public function scopes($scopes)
@@ -280,7 +290,7 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Set the scopes of the requested access.
      *
-     * @param  array|string $scopes
+     * @param array|string $scopes
      * @return $this
      */
     public function setScopes($scopes)
@@ -302,10 +312,10 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Set the redirect URL.
      *
-     * @param  string $url
+     * @param string $url
      * @return $this
      */
-    public function redirectUrl($url)
+    public function redirectUrl(string $url)
     {
         $this->redirectUrl = $url;
         return $this;
@@ -327,7 +337,7 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Set the Guzzle HTTP client instance.
      *
-     * @param  \GuzzleHttp\Client $client
+     * @param \GuzzleHttp\Client $client
      * @return $this
      */
     public function setHttpClient(Client $client)
@@ -339,7 +349,7 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Set the request instance.
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @return $this
      */
     public function setRequest(Request $request)
@@ -382,7 +392,7 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Set the custom parameters of the request.
      *
-     * @param  array $parameters
+     * @param array $parameters
      * @return $this
      */
     public function with(array $parameters)

@@ -27,8 +27,8 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Create a new provider instance.
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
-     * @param  \League\OAuth1\Client\Server\Server $server
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \League\OAuth1\Client\Server\Server $server
      */
     public function __construct(Request $request, Server $server)
     {
@@ -73,8 +73,8 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Get a Social User instance from a known access token and secret.
      *
-     * @param  string $token
-     * @param  string $secret
+     * @param string $token
+     * @param string $secret
      * @return \mosaxiv\Socialite\One\User
      */
     public function userFromTokenAndSecret($token, $secret)
@@ -122,7 +122,7 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Set the request instance.
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @return $this
      */
     public function setRequest(Request $request)

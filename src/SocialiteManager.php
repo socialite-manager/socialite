@@ -12,9 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use League\OAuth1\Client\Server\Twitter as TwitterServer;
 
-/**
- * Class SocialiteManager.
- */
 class SocialiteManager
 {
     /**
@@ -63,10 +60,9 @@ class SocialiteManager
      * Get a driver instance.
      *
      * @param string $driver
-     *
      * @return Provider
      */
-    public function driver($driver)
+    public function driver(string $driver)
     {
         if (!isset($this->drivers[$driver])) {
             throw new \InvalidArgumentException("Driver not supported.");

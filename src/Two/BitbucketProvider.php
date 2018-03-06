@@ -9,6 +9,7 @@ class BitbucketProvider extends AbstractProvider implements ProviderInterface
      * @var array
      */
     protected $scopes = ['email'];
+
     /**
      * The separating character for the requested scopes.
      *
@@ -19,7 +20,7 @@ class BitbucketProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    protected function getAuthUrl($state)
+    protected function getAuthUrl(string $state)
     {
         return $this->buildAuthUrlFromBase('https://bitbucket.org/site/oauth2/authorize', $state);
     }
@@ -35,7 +36,7 @@ class BitbucketProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    protected function getUserByToken($token)
+    protected function getUserByToken(string $token)
     {
         $userUrl = 'https://api.bitbucket.org/2.0/user?access_token=' . $token;
         $response = $this->getHttpClient()->get($userUrl);
@@ -49,7 +50,7 @@ class BitbucketProvider extends AbstractProvider implements ProviderInterface
     /**
      * Get the email for the given access token.
      *
-     * @param  string $token
+     * @param string $token
      * @return string|null
      */
     protected function getEmailByToken($token)
@@ -85,10 +86,10 @@ class BitbucketProvider extends AbstractProvider implements ProviderInterface
     /**
      * Get the access token for the given code.
      *
-     * @param  string $code
+     * @param string $code
      * @return string
      */
-    public function getAccessToken($code)
+    public function getAccessToken(string $code)
     {
         $response = $this->getHttpClient()->post($this->getTokenUrl(), [
             'auth' => [$this->clientId, $this->clientSecret],
@@ -101,10 +102,10 @@ class BitbucketProvider extends AbstractProvider implements ProviderInterface
     /**
      * Get the POST fields for the token request.
      *
-     * @param  string $code
+     * @param string $code
      * @return array
      */
-    protected function getTokenFields($code)
+    protected function getTokenFields(string $code)
     {
         return parent::getTokenFields($code) + ['grant_type' => 'authorization_code'];
     }

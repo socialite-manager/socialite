@@ -3,17 +3,14 @@ namespace mosaxiv\Socialite;
 
 use mosaxiv\Socialite\Contracts\Provider;
 
-/**
- * Class Socialite.
- */
 class Socialite
 {
     /**
-     * @param $driver
-     * @param $config
+     * @param string $driver
+     * @param array $config
      * @return Provider
      */
-    public static function driver($driver, $config)
+    public static function driver(string $driver, array $config)
     {
         $socialiteManager = new SocialiteManager($config);
         return $socialiteManager->driver($driver);

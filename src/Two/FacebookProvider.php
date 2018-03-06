@@ -9,30 +9,35 @@ class FacebookProvider extends AbstractProvider implements ProviderInterface
      * @var string
      */
     protected $graphUrl = 'https://graph.facebook.com';
+
     /**
      * The Graph API version for the request.
      *
      * @var string
      */
     protected $version = 'v2.11';
+
     /**
      * The user fields being requested.
      *
      * @var array
      */
     protected $fields = ['name', 'email', 'gender', 'verified', 'link'];
+
     /**
      * The scopes being requested.
      *
      * @var array
      */
     protected $scopes = ['email'];
+
     /**
      * Display the dialog in a popup view.
      *
      * @var bool
      */
     protected $popup = false;
+
     /**
      * Re-request a declined permission.
      *
@@ -43,7 +48,7 @@ class FacebookProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    protected function getAuthUrl($state)
+    protected function getAuthUrl(string $state)
     {
         return $this->buildAuthUrlFromBase('https://www.facebook.com/' . $this->version . '/dialog/oauth', $state);
     }
@@ -59,7 +64,7 @@ class FacebookProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function getAccessTokenResponse($code)
+    public function getAccessTokenResponse(string $code)
     {
         $response = $this->getHttpClient()->post($this->getTokenUrl(), [
             'form_params' => $this->getTokenFields($code),
@@ -74,7 +79,7 @@ class FacebookProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    protected function getUserByToken($token)
+    protected function getUserByToken(string $token)
     {
         $meUrl = "{$this->graphUrl}/{$this->version}/me?access_token={$token}&fields=" . implode(',', $this->fields);
         if (!empty($this->clientSecret)) {
@@ -124,7 +129,7 @@ class FacebookProvider extends AbstractProvider implements ProviderInterface
     /**
      * Set the user fields to request from Facebook.
      *
-     * @param  array $fields
+     * @param array $fields
      * @return $this
      */
     public function fields(array $fields)

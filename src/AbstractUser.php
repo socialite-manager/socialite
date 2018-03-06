@@ -11,30 +11,35 @@ abstract class AbstractUser implements ArrayAccess, Contracts\User
      * @var mixed
      */
     public $id;
+
     /**
      * The user's nickname / username.
      *
      * @var string
      */
     public $nickname;
+
     /**
      * The user's full name.
      *
      * @var string
      */
     public $name;
+
     /**
      * The user's e-mail address.
      *
      * @var string
      */
     public $email;
+
     /**
      * The user's avatar image URL.
      *
      * @var string
      */
     public $avatar;
+
     /**
      * The user's raw attributes.
      *
@@ -105,7 +110,7 @@ abstract class AbstractUser implements ArrayAccess, Contracts\User
     /**
      * Set the raw user array from the provider.
      *
-     * @param  array $user
+     * @param array $user
      * @return $this
      */
     public function setRaw(array $user)
@@ -117,7 +122,7 @@ abstract class AbstractUser implements ArrayAccess, Contracts\User
     /**
      * Map the given array onto the user's properties.
      *
-     * @param  array $attributes
+     * @param array $attributes
      * @return $this
      */
     public function map(array $attributes)
@@ -131,7 +136,7 @@ abstract class AbstractUser implements ArrayAccess, Contracts\User
     /**
      * Determine if the given raw user attribute exists.
      *
-     * @param  string $offset
+     * @param string $offset
      * @return bool
      */
     public function offsetExists($offset)
@@ -142,7 +147,7 @@ abstract class AbstractUser implements ArrayAccess, Contracts\User
     /**
      * Get the given key from the raw user.
      *
-     * @param  string $offset
+     * @param string $offset
      * @return mixed
      */
     public function offsetGet($offset)
@@ -153,8 +158,8 @@ abstract class AbstractUser implements ArrayAccess, Contracts\User
     /**
      * Set the given attribute on the raw user array.
      *
-     * @param  string $offset
-     * @param  mixed $value
+     * @param string $offset
+     * @param mixed $value
      * @return void
      */
     public function offsetSet($offset, $value)
@@ -165,7 +170,7 @@ abstract class AbstractUser implements ArrayAccess, Contracts\User
     /**
      * Unset the given value from the raw user array.
      *
-     * @param  string $offset
+     * @param string $offset
      * @return void
      */
     public function offsetUnset($offset)

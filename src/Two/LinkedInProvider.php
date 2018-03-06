@@ -9,12 +9,14 @@ class LinkedInProvider extends AbstractProvider implements ProviderInterface
      * @var array
      */
     protected $scopes = ['r_basicprofile', 'r_emailaddress'];
+
     /**
      * The separating character for the requested scopes.
      *
      * @var string
      */
     protected $scopeSeparator = ' ';
+
     /**
      * The fields that are included in the profile.
      *
@@ -37,7 +39,7 @@ class LinkedInProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    protected function getAuthUrl($state)
+    protected function getAuthUrl(string $state)
     {
         return $this->buildAuthUrlFromBase('https://www.linkedin.com/oauth/v2/authorization', $state);
     }
@@ -53,10 +55,10 @@ class LinkedInProvider extends AbstractProvider implements ProviderInterface
     /**
      * Get the POST fields for the token request.
      *
-     * @param  string $code
+     * @param string $code
      * @return array
      */
-    protected function getTokenFields($code)
+    protected function getTokenFields(string $code)
     {
         return parent::getTokenFields($code) + ['grant_type' => 'authorization_code'];
     }
@@ -64,7 +66,7 @@ class LinkedInProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    protected function getUserByToken($token)
+    protected function getUserByToken(string $token)
     {
         $fields = implode(',', $this->fields);
         $url = 'https://api.linkedin.com/v1/people/~:(' . $fields . ')';
@@ -95,7 +97,7 @@ class LinkedInProvider extends AbstractProvider implements ProviderInterface
     /**
      * Set the user fields to request from LinkedIn.
      *
-     * @param  array $fields
+     * @param array $fields
      * @return $this
      */
     public function fields(array $fields)

@@ -11,6 +11,7 @@ class User extends AbstractUser
      * @var string
      */
     public $token;
+
     /**
      * The user's access token secret.
      *
@@ -21,11 +22,11 @@ class User extends AbstractUser
     /**
      * Set the token on the user.
      *
-     * @param  string $token
-     * @param  string $tokenSecret
+     * @param string $token
+     * @param string $tokenSecret
      * @return $this
      */
-    public function setToken($token, $tokenSecret)
+    public function setToken(string $token,string $tokenSecret)
     {
         $this->token = $token;
         $this->tokenSecret = $tokenSecret;

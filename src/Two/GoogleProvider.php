@@ -9,6 +9,7 @@ class GoogleProvider extends AbstractProvider implements ProviderInterface
      * @var string
      */
     protected $scopeSeparator = ' ';
+
     /**
      * The scopes being requested.
      *
@@ -39,7 +40,7 @@ class GoogleProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    protected function getTokenFields($code)
+    protected function getTokenFields(string $code)
     {
         $fields = parent::getTokenFields($code);
         $fields['grant_type'] = 'authorization_code';
@@ -50,7 +51,7 @@ class GoogleProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    protected function getUserByToken($token)
+    protected function getUserByToken(string $token)
     {
         $response = $this->getHttpClient()->get('https://www.googleapis.com/plus/v1/people/me?', [
             'query' => [
