@@ -1,14 +1,12 @@
 <?php
 namespace mosaxiv\Socialite;
 
-use mosaxiv\Socialite\Contracts\Provider;
-
 class Socialite
 {
     /**
      * @param string $driver
      * @param array $config
-     * @return Provider
+     * @return \mosaxiv\Socialite\ProviderInterface
      */
     public static function driver(string $driver, array $config)
     {

@@ -1,5 +1,5 @@
 <?php
-namespace mosaxiv\Socialite\Two;
+namespace mosaxiv\Socialite;
 
 interface ProviderInterface
 {
@@ -13,7 +13,7 @@ interface ProviderInterface
     /**
      * Get the User instance for the authenticated user.
      *
-     * @return \mosaxiv\Socialite\Two\User
+     * @return \mosaxiv\Socialite\UserInterface
      */
     public function user();
 }

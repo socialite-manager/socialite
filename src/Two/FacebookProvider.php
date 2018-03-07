@@ -1,7 +1,7 @@
 <?php
 namespace mosaxiv\Socialite\Two;
 
-class FacebookProvider extends AbstractProvider implements ProviderInterface
+class FacebookProvider extends AbstractProvider
 {
     /**
      * The base Facebook Graph URL.

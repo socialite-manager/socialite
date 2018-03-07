@@ -1,7 +1,6 @@
 <?php
 namespace mosaxiv\Socialite;
 
-use mosaxiv\Socialite\Contracts\Provider;
 use mosaxiv\Socialite\One\TwitterProvider;
 use mosaxiv\Socialite\Two\BitbucketProvider;
 use mosaxiv\Socialite\Two\FacebookProvider;
@@ -60,7 +59,7 @@ class SocialiteManager
      * Get a driver instance.
      *
      * @param string $driver
-     * @return Provider
+     * @return ProviderInterface
      */
     public function driver(string $driver)
     {

@@ -6,9 +6,8 @@ use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use League\OAuth1\Client\Server\Server;
 use League\OAuth1\Client\Credentials\TokenCredentials;
-use mosaxiv\Socialite\Contracts\Provider as ProviderContract;
 
-abstract class AbstractProvider implements ProviderContract
+abstract class AbstractProvider
 {
     /**
      * The HTTP request instance.

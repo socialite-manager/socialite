@@ -1,7 +1,7 @@
 <?php
 namespace mosaxiv\Socialite\Two;
 
-class BitbucketProvider extends AbstractProvider implements ProviderInterface
+class BitbucketProvider extends AbstractProvider
 {
     /**
      * The scopes being requested.

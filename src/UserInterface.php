@@ -1,7 +1,7 @@
 <?php
-namespace mosaxiv\Socialite\Contracts;
+namespace mosaxiv\Socialite;
 
-interface User
+interface UserInterface
 {
     /**
      * Get the unique identifier for the user.

@@ -1,7 +1,7 @@
 <?php
 namespace mosaxiv\Socialite\Two;
 
-class LinkedInProvider extends AbstractProvider implements ProviderInterface
+class LinkedInProvider extends AbstractProvider
 {
     /**
      * The scopes being requested.

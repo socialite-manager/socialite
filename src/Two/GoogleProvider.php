@@ -1,7 +1,7 @@
 <?php
 namespace mosaxiv\Socialite\Two;
 
-class GoogleProvider extends AbstractProvider implements ProviderInterface
+class GoogleProvider extends AbstractProvider
 {
     /**
      * The separating character for the requested scopes.
@@ -24,7 +24,7 @@ class GoogleProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    protected function getAuthUrl($state)
+    protected function getAuthUrl(string $state)
     {
         return $this->buildAuthUrlFromBase('https://accounts.google.com/o/oauth2/auth', $state);
     }

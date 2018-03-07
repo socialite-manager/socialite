@@ -2,11 +2,11 @@
 namespace mosaxiv\Socialite\Two;
 
 use GuzzleHttp\Client;
+use mosaxiv\Socialite\ProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use mosaxiv\Socialite\Contracts\Provider as ProviderContract;
 
-abstract class AbstractProvider implements ProviderContract
+abstract class AbstractProvider implements ProviderInterface
 {
     /**
      * The HTTP request instance.

@@ -3,7 +3,7 @@ namespace mosaxiv\Socialite;
 
 use ArrayAccess;
 
-abstract class AbstractUser implements ArrayAccess, Contracts\User
+abstract class AbstractUser implements ArrayAccess, UserInterface
 {
     /**
      * The unique identifier for the user.

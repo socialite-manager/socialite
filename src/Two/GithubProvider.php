@@ -1,7 +1,7 @@
 <?php
 namespace mosaxiv\Socialite\Two;
 
-class GithubProvider extends AbstractProvider implements ProviderInterface
+class GithubProvider extends AbstractProvider
 {
     /**
      * The scopes being requested.
