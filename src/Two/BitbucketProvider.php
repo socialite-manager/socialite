@@ -79,9 +79,9 @@ class BitbucketProvider extends AbstractProvider
         return (new User)->setRaw($user)->map([
             'id' => $user['uuid'],
             'nickname' => $user['username'],
-            'name' => A::get($user,'display_name'),
-            'email' => A::get($user,'email'),
-            'avatar' =>A::get($user,'links.avatar.href'),
+            'name' => A::get($user, 'display_name'),
+            'email' => A::get($user, 'email'),
+            'avatar' =>A::get($user, 'links.avatar.href'),
         ]);
     }
 
