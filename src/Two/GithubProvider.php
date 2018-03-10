@@ -1,6 +1,8 @@
 <?php
 namespace mosaxiv\Socialite\Two;
 
+use mosaxiv\Socialite\Util\A;
+
 class GithubProvider extends AbstractProvider
 {
     /**
@@ -74,10 +76,10 @@ class GithubProvider extends AbstractProvider
     {
         return (new User)->setRaw($user)->map([
             'id' => $user['id'],
-            'nickname' => $user['login'],
-            'name' => $user['name'] ?? null,
-            'email' => $user['email'] ?? null,
-            'avatar' => $user['avatar_url'],
+            'nickname' => A::get($user, 'login'),
+            'name' => A::get($user, 'name'),
+            'email' => A::get($user, 'email'),
+            'avatar' => A::get($user, 'avatar_url'),
         ]);
     }
 

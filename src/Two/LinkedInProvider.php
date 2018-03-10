@@ -1,6 +1,8 @@
 <?php
 namespace mosaxiv\Socialite\Two;
 
+use mosaxiv\Socialite\Util\A;
+
 class LinkedInProvider extends AbstractProvider
 {
     /**
@@ -87,10 +89,10 @@ class LinkedInProvider extends AbstractProvider
         return (new User)->setRaw($user)->map([
             'id' => $user['id'],
             'nickname' => null,
-            'name' => $user['formattedName'] ?? null,
-            'email' => $user['emailAddress'] ?? null,
-            'avatar' => $user['pictureUrl'] ?? null,
-            'avatar_original' => $user['pictureUrls']['values'][0] ?? null,
+            'name' => A::get($user, 'formattedName'),
+            'email' => A::get($user, 'emailAddress'),
+            'avatar' => A::get($user, 'pictureUrl'),
+            'avatar_original' => A::get($user, 'pictureUrls.values.0'),
         ]);
     }
 

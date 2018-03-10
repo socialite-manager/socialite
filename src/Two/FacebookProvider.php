@@ -1,6 +1,8 @@
 <?php
 namespace mosaxiv\Socialite\Two;
 
+use mosaxiv\Socialite\Util\A;
+
 class FacebookProvider extends AbstractProvider
 {
     /**
@@ -103,11 +105,11 @@ class FacebookProvider extends AbstractProvider
         return (new User)->setRaw($user)->map([
             'id' => $user['id'],
             'nickname' => null,
-            'name' => $user['name'] ?? null,
-            'email' => $user['email'] ?? null,
+            'name' => A::get($user, 'name'),
+            'email' => A::get($user, 'email'),
             'avatar' => $avatarUrl . '?type=normal',
             'avatar_original' => $avatarUrl . '?width=1920',
-            'profileUrl' => $user['link'] ?? null,
+            'profileUrl' => A::get($user, 'link'),
         ]);
     }
 

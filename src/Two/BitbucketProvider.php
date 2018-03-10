@@ -1,6 +1,8 @@
 <?php
 namespace mosaxiv\Socialite\Two;
 
+use mosaxiv\Socialite\Util\A;
+
 class BitbucketProvider extends AbstractProvider
 {
     /**
@@ -77,9 +79,9 @@ class BitbucketProvider extends AbstractProvider
         return (new User)->setRaw($user)->map([
             'id' => $user['uuid'],
             'nickname' => $user['username'],
-            'name' => $user['display_name'] ?? null,
-            'email' => $user['email'] ?? null,
-            'avatar' => $user['links']['avatar']['href'] ?? null,
+            'name' => A::get($user,'display_name'),
+            'email' => A::get($user,'email'),
+            'avatar' =>A::get($user,'links.avatar.href'),
         ]);
     }
 

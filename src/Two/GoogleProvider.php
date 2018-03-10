@@ -1,6 +1,8 @@
 <?php
 namespace mosaxiv\Socialite\Two;
 
+use mosaxiv\Socialite\Util\A;
+
 class GoogleProvider extends AbstractProvider
 {
     /**
@@ -72,11 +74,11 @@ class GoogleProvider extends AbstractProvider
     {
         return (new User)->setRaw($user)->map([
             'id' => $user['id'],
-            'nickname' => $user['nickname'] ?? null,
-            'name' => $user['displayName'] ?? null,
-            'email' => $user['emails'][0]['value'] ?? null,
-            'avatar' => $user['image']['url'] ?? null,
-            'avatar_original' => preg_replace('/\?sz=([0-9]+)/', '', $user['image']['url'] ?? null),
+            'nickname' => A::get($user, 'nickname'),
+            'name' => A::get($user, 'displayName'),
+            'email' => A::get($user, 'emails.0.value'),
+            'avatar' => A::get($user, 'image.url'),
+            'avatar_original' => preg_replace('/\?sz=([0-9]+)/', '', A::get($user, 'image.url')),
         ]);
     }
 }
