@@ -3,11 +3,14 @@ namespace mosaxiv\Socialite\Two;
 
 use GuzzleHttp\Client;
 use mosaxiv\Socialite\ProviderInterface;
+use mosaxiv\Socialite\SessionTrait;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 abstract class AbstractProvider implements ProviderInterface
 {
+    use SessionTrait;
+
     /**
      * The HTTP request instance.
      *
@@ -95,7 +98,8 @@ abstract class AbstractProvider implements ProviderInterface
     public function __construct(Request $request, array $config, array $guzzle = [])
     {
         $this->guzzle = $guzzle;
-        $this->request = $request;
+        $this->setRequest($request);
+        $this->setSession($request->getSession());
         $this->clientId = $config['client_id'];
         $this->redirectUrl = $config['redirect'];
         $this->clientSecret = $config['client_secret'];
@@ -142,7 +146,7 @@ abstract class AbstractProvider implements ProviderInterface
         $state = null;
         if ($this->usesState()) {
             $state = bin2hex(random_bytes(32));
-            $this->request->getSession()->set('state', $state);
+            $this->setSessionData('state', $state);
         }
         return (new RedirectResponse($this->getAuthUrl($state)))->send();
     }
@@ -229,8 +233,7 @@ abstract class AbstractProvider implements ProviderInterface
         if ($this->isStateless()) {
             return false;
         }
-        $session = $this->request->getSession();
-        $state = $session->get('state');
+        $state = $this->getSessionData('state');
         return !(strlen($state) > 0 && $this->request->get('state') === $state);
     }
 

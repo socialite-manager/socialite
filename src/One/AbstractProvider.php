@@ -1,6 +1,8 @@
 <?php
+
 namespace mosaxiv\Socialite\One;
 
+use mosaxiv\Socialite\SessionTrait;
 use Symfony\Component\HttpFoundation\Request;
 use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -9,6 +11,8 @@ use League\OAuth1\Client\Credentials\TokenCredentials;
 
 abstract class AbstractProvider
 {
+    use SessionTrait;
+
     /**
      * The HTTP request instance.
      *
@@ -31,8 +35,9 @@ abstract class AbstractProvider
      */
     public function __construct(Request $request, Server $server)
     {
-        $this->server = $server;
-        $this->request = $request;
+        $this->setSever($server);
+        $this->setSession($request->getSession());
+        $this->setRequest($request);
     }
 
     /**
@@ -103,7 +108,7 @@ abstract class AbstractProvider
      */
     protected function getToken()
     {
-        $temp = $this->request->getSession()->get('oauth.temp');
+        $temp = $this->getSessionData('oauth.temp');
         return $this->server->getTokenCredentials(
             $temp,
             $this->request->get('oauth_token'),
