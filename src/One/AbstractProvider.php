@@ -5,8 +5,6 @@ namespace mosaxiv\Socialite\One;
 use mosaxiv\Socialite\SessionTrait;
 use mosaxiv\Socialite\Util\A;
 use Psr\Http\Message\ServerRequestInterface;
-use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
-use Symfony\Component\HttpFoundation\Request;
 use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\RedirectResponse as Redirect;
 use League\OAuth1\Client\Server\Server;
@@ -34,15 +32,15 @@ abstract class AbstractProvider
     /**
      * Create a new provider instance.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Psr\Http\Message\ServerRequestInterface $request
      * @param \League\OAuth1\Client\Server\Server $server
+     * @param mixed $session
      */
-    public function __construct(Request $request, Server $server)
+    public function __construct(ServerRequestInterface $request, Server $server, $session)
     {
         $this->setSever($server);
-        $this->setSession($request->getSession());
-        $psr7Factory = new DiactorosFactory();
-        $this->setRequest($psr7Factory->createRequest($request));
+        $this->setRequest($request);
+        $this->setSession($session);
     }
 
     /**

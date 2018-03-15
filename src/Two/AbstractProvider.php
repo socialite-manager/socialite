@@ -7,8 +7,6 @@ use mosaxiv\Socialite\ProviderInterface;
 use mosaxiv\Socialite\SessionTrait;
 use mosaxiv\Socialite\Util\A;
 use Psr\Http\Message\ServerRequestInterface;
-use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse as Redirect;
 use Zend\Diactoros\Response\RedirectResponse as psr7Redirect;
 
@@ -96,16 +94,15 @@ abstract class AbstractProvider implements ProviderInterface
     /**
      * Create a new provider instance.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Psr\Http\Message\ServerRequestInterface $request
      * @param array $config
      * @param array $guzzle
      */
-    public function __construct(Request $request, array $config, array $guzzle = [])
+    public function __construct(ServerRequestInterface $request, array $config, $session, array $guzzle = [])
     {
         $this->guzzle = $guzzle;
-        $psr7Factory = new DiactorosFactory();
-        $this->setRequest($psr7Factory->createRequest($request));
-        $this->setSession($request->getSession());
+        $this->setRequest($request);
+        $this->setSession($session);
         $this->clientId = $config['client_id'];
         $this->redirectUrl = $config['redirect'];
         $this->clientSecret = $config['client_secret'];

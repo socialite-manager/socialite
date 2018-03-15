@@ -7,9 +7,9 @@ use mosaxiv\Socialite\Two\FacebookProvider;
 use mosaxiv\Socialite\Two\GithubProvider;
 use mosaxiv\Socialite\Two\GoogleProvider;
 use mosaxiv\Socialite\Two\LinkedInProvider;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use League\OAuth1\Client\Server\Twitter as TwitterServer;
+use Zend\Diactoros\ServerRequestFactory;
 
 class SocialiteManager
 {
@@ -23,9 +23,16 @@ class SocialiteManager
     /**
      * The request instance.
      *
-     * @var Request
+     * @var \Psr\Http\Message\ServerRequestInterface
      */
     protected $request;
+
+    /**
+     * The session instance.
+     *
+     * @var mixed
+     */
+    protected $session;
 
     /**
      * The drivers.
@@ -72,7 +79,11 @@ class SocialiteManager
             return $this->$provider();
         }
 
-        return new $this->drivers[$driver]($this->getRequest(), $this->config);
+        return new $this->drivers[$driver](
+            $this->getRequest(),
+            $this->config,
+            $this->getSession()
+        );
     }
 
     /**
@@ -84,30 +95,25 @@ class SocialiteManager
     {
         return new TwitterProvider(
             $this->getRequest(),
-            new TwitterServer($this->formatConfig())
+            new TwitterServer($this->formatConfig()),
+            $this->getSession()
         );
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Request
+     * @return \Psr\Http\Message\ServerRequestInterface
      */
     protected function getRequest()
     {
-        return $this->request ?: $this->createRequest();
+        return $this->request ?: ServerRequestFactory::fromGlobals();
     }
 
     /**
-     * Create request instance.
-     *
-     * @return Request
+     * @return mixed
      */
-    protected function createRequest()
+    protected function getSession()
     {
-        $request = Request::createFromGlobals();
-        $session = new Session();
-        $request->setSession($session);
-
-        return $request;
+        return $this->session ?: new Session();
     }
 
     /**
