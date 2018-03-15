@@ -1,11 +1,16 @@
 <?php
+
 namespace mosaxiv\Socialite\Two;
 
 use GuzzleHttp\Client;
 use mosaxiv\Socialite\ProviderInterface;
 use mosaxiv\Socialite\SessionTrait;
+use mosaxiv\Socialite\Util\A;
+use Psr\Http\Message\ServerRequestInterface;
+use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse as Redirect;
+use Zend\Diactoros\Response\RedirectResponse as psr7Redirect;
 
 abstract class AbstractProvider implements ProviderInterface
 {
@@ -14,7 +19,7 @@ abstract class AbstractProvider implements ProviderInterface
     /**
      * The HTTP request instance.
      *
-     * @var \Symfony\Component\HttpFoundation\Request
+     * @var \Psr\Http\Message\ServerRequestInterface
      */
     protected $request;
 
@@ -98,7 +103,8 @@ abstract class AbstractProvider implements ProviderInterface
     public function __construct(Request $request, array $config, array $guzzle = [])
     {
         $this->guzzle = $guzzle;
-        $this->setRequest($request);
+        $psr7Factory = new DiactorosFactory();
+        $this->setRequest($psr7Factory->createRequest($request));
         $this->setSession($request->getSession());
         $this->clientId = $config['client_id'];
         $this->redirectUrl = $config['redirect'];
@@ -148,7 +154,23 @@ abstract class AbstractProvider implements ProviderInterface
             $state = bin2hex(random_bytes(32));
             $this->setSessionData('state', $state);
         }
-        return (new RedirectResponse($this->getAuthUrl($state)))->send();
+        return (new Redirect($this->getAuthUrl($state)))->send();
+    }
+
+    /**
+     * Redirect the user to the authentication page for the provider.
+     *
+     * @return \Zend\Diactoros\Response\RedirectResponse
+     */
+    public function psrRedirect()
+    {
+        $state = null;
+        if ($this->usesState()) {
+            $state = bin2hex(random_bytes(32));
+            $this->setSessionData('state', $state);
+        }
+
+        return new psr7Redirect($this->getAuthUrl($state));
     }
 
     /**
@@ -234,7 +256,7 @@ abstract class AbstractProvider implements ProviderInterface
             return false;
         }
         $state = $this->getSessionData('state');
-        return !(strlen($state) > 0 && $this->request->get('state') === $state);
+        return !(strlen($state) > 0 && A::get($this->request->getQueryParams(), 'state') === $state);
     }
 
     /**
@@ -275,7 +297,7 @@ abstract class AbstractProvider implements ProviderInterface
      */
     protected function getCode()
     {
-        return $this->request->get('code');
+        return A::get($this->request->getQueryParams(), 'code');
     }
 
     /**
@@ -352,10 +374,10 @@ abstract class AbstractProvider implements ProviderInterface
     /**
      * Set the request instance.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Psr\Http\Message\ServerRequestInterface $request
      * @return $this
      */
-    public function setRequest(Request $request)
+    public function setRequest(ServerRequestInterface $request)
     {
         $this->request = $request;
         return $this;

@@ -3,11 +3,15 @@
 namespace mosaxiv\Socialite\One;
 
 use mosaxiv\Socialite\SessionTrait;
+use mosaxiv\Socialite\Util\A;
+use Psr\Http\Message\ServerRequestInterface;
+use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
 use Symfony\Component\HttpFoundation\Request;
 use InvalidArgumentException;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse as Redirect;
 use League\OAuth1\Client\Server\Server;
 use League\OAuth1\Client\Credentials\TokenCredentials;
+use Zend\Diactoros\Response\RedirectResponse as psr7Redirect;
 
 abstract class AbstractProvider
 {
@@ -16,7 +20,7 @@ abstract class AbstractProvider
     /**
      * The HTTP request instance.
      *
-     * @var \Symfony\Component\HttpFoundation\Request
+     * @var \Psr\Http\Message\ServerRequestInterface
      */
     protected $request;
 
@@ -37,7 +41,8 @@ abstract class AbstractProvider
     {
         $this->setSever($server);
         $this->setSession($request->getSession());
-        $this->setRequest($request);
+        $psr7Factory = new DiactorosFactory();
+        $this->setRequest($psr7Factory->createRequest($request));
     }
 
     /**
@@ -47,11 +52,23 @@ abstract class AbstractProvider
      */
     public function redirect()
     {
-        $this->request->getSession()->set(
-            'oauth.temp',
-            $temp = $this->server->getTemporaryCredentials()
-        );
-        return (new RedirectResponse($this->server->getAuthorizationUrl($temp)))->send();
+        $temp = $this->server->getTemporaryCredentials();
+        $this->setSessionData('oauth.temp', $temp);
+
+        return (new Redirect($this->server->getAuthorizationUrl($temp)))->send();
+    }
+
+    /**
+     * Redirect the user to the authentication page for the provider.
+     *
+     * @return \Zend\Diactoros\Response\RedirectResponse
+     */
+    public function psrRedirect()
+    {
+        $temp = $this->server->getTemporaryCredentials();
+        $this->setSessionData('oauth.temp', $temp);
+
+        return new psr7Redirect($this->server->getAuthorizationUrl($temp));
     }
 
     /**
@@ -108,11 +125,12 @@ abstract class AbstractProvider
      */
     protected function getToken()
     {
+        $query = $this->request->getQueryParams();
         $temp = $this->getSessionData('oauth.temp');
         return $this->server->getTokenCredentials(
             $temp,
-            $this->request->get('oauth_token'),
-            $this->request->get('oauth_verifier')
+            A::get($query, 'oauth_token'),
+            A::get($query, 'oauth_verifier')
         );
     }
 
@@ -123,8 +141,9 @@ abstract class AbstractProvider
      */
     protected function hasNecessaryVerifier()
     {
-        $hasToken = $this->request->get('oauth_token') !== null;
-        $hasVerifier = $this->request->get('oauth_verifier') !== null;
+        $query = $this->request->getQueryParams();
+        $hasToken = A::get($query, 'oauth_token') !== null;
+        $hasVerifier = A::get($query, 'oauth_verifier') !== null;
 
         return $hasToken && $hasVerifier;
     }
@@ -132,10 +151,10 @@ abstract class AbstractProvider
     /**
      * Set the request instance.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Psr\Http\Message\ServerRequestInterface $request
      * @return $this
      */
-    public function setRequest(Request $request)
+    public function setRequest(ServerRequestInterface $request)
     {
         $this->request = $request;
         return $this;
