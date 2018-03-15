@@ -159,7 +159,7 @@ abstract class AbstractProvider implements ProviderInterface
      *
      * @return \Zend\Diactoros\Response\RedirectResponse
      */
-    public function psrRedirect()
+    public function psr7Redirect()
     {
         $state = null;
         if ($this->usesState()) {

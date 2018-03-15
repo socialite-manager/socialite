@@ -61,7 +61,7 @@ abstract class AbstractProvider
      *
      * @return \Zend\Diactoros\Response\RedirectResponse
      */
-    public function psrRedirect()
+    public function psr7Redirect()
     {
         $temp = $this->server->getTemporaryCredentials();
         $this->setSessionData('oauth.temp', $temp);
