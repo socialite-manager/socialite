@@ -149,7 +149,7 @@ abstract class AbstractProvider implements ProviderInterface
         $state = null;
         if ($this->usesState()) {
             $state = bin2hex(random_bytes(32));
-            $this->setSessionData('state', $state);
+            $this->setSessionData('Socialite.state', $state);
         }
         return (new Redirect($this->getAuthUrl($state)))->send();
     }
@@ -164,7 +164,7 @@ abstract class AbstractProvider implements ProviderInterface
         $state = null;
         if ($this->usesState()) {
             $state = bin2hex(random_bytes(32));
-            $this->setSessionData('state', $state);
+            $this->setSessionData('Socialite.state', $state);
         }
 
         return new psr7Redirect($this->getAuthUrl($state));
@@ -252,7 +252,7 @@ abstract class AbstractProvider implements ProviderInterface
         if ($this->isStateless()) {
             return false;
         }
-        $state = $this->getSessionData('state');
+        $state = $this->getSessionData('Socialite.state');
         return !(strlen($state) > 0 && A::get($this->request->getQueryParams(), 'state') === $state);
     }
 

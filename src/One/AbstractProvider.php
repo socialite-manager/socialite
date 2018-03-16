@@ -51,7 +51,7 @@ abstract class AbstractProvider
     public function redirect()
     {
         $temp = $this->server->getTemporaryCredentials();
-        $this->setSessionData('oauth.temp', $temp);
+        $this->setSessionData('Socialite.oauth.temp', $temp);
 
         return (new Redirect($this->server->getAuthorizationUrl($temp)))->send();
     }
@@ -64,7 +64,7 @@ abstract class AbstractProvider
     public function psr7Redirect()
     {
         $temp = $this->server->getTemporaryCredentials();
-        $this->setSessionData('oauth.temp', $temp);
+        $this->setSessionData('Socialite.oauth.temp', $temp);
 
         return new psr7Redirect($this->server->getAuthorizationUrl($temp));
     }
@@ -124,7 +124,7 @@ abstract class AbstractProvider
     protected function getToken()
     {
         $query = $this->request->getQueryParams();
-        $temp = $this->getSessionData('oauth.temp');
+        $temp = $this->getSessionData('Socialite.oauth.temp');
         return $this->server->getTokenCredentials(
             $temp,
             A::get($query, 'oauth_token'),
