@@ -2,6 +2,7 @@
 
 namespace mosaxiv\Socialite\One;
 
+use mosaxiv\Socialite\ProviderInterface;
 use mosaxiv\Socialite\SessionTrait;
 use mosaxiv\Socialite\Util\A;
 use Psr\Http\Message\ServerRequestInterface;
@@ -11,7 +12,7 @@ use League\OAuth1\Client\Server\Server;
 use League\OAuth1\Client\Credentials\TokenCredentials;
 use Zend\Diactoros\Response\RedirectResponse as psr7Redirect;
 
-abstract class AbstractProvider
+abstract class AbstractProvider implements ProviderInterface
 {
     use SessionTrait;
 
@@ -44,9 +45,7 @@ abstract class AbstractProvider
     }
 
     /**
-     * Redirect the user to the authentication page for the provider.
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @inheritdoc
      */
     public function redirect()
     {
@@ -57,9 +56,7 @@ abstract class AbstractProvider
     }
 
     /**
-     * Redirect the user to the authentication page for the provider.
-     *
-     * @return \Zend\Diactoros\Response\RedirectResponse
+     * @inheritdoc
      */
     public function psr7Redirect()
     {
@@ -70,10 +67,7 @@ abstract class AbstractProvider
     }
 
     /**
-     * Get the User instance for the authenticated user.
-     *
-     * @throws \InvalidArgumentException
-     * @return \mosaxiv\Socialite\One\User
+     * {@inheritdoc}
      */
     public function user()
     {

@@ -140,9 +140,7 @@ abstract class AbstractProvider implements ProviderInterface
     abstract protected function mapUserToObject(array $user);
 
     /**
-     * Redirect the user of the application to the provider's authentication screen.
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * {@inheritdoc}
      */
     public function redirect()
     {
@@ -155,9 +153,7 @@ abstract class AbstractProvider implements ProviderInterface
     }
 
     /**
-     * Redirect the user to the authentication page for the provider.
-     *
-     * @return \Zend\Diactoros\Response\RedirectResponse
+     * {@inheritdoc}
      */
     public function psr7Redirect()
     {

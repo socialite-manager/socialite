@@ -11,6 +11,13 @@ interface ProviderInterface
     public function redirect();
 
     /**
+     * Redirect the user to the authentication page for the provider.
+     *
+     * @return \Zend\Diactoros\Response\RedirectResponse
+     */
+    public function psr7Redirect();
+
+    /**
      * Get the User instance for the authenticated user.
      *
      * @return \mosaxiv\Socialite\UserInterface
