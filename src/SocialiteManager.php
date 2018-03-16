@@ -66,7 +66,7 @@ class SocialiteManager
      * Get a driver instance.
      *
      * @param string $driver
-     * @return ProviderInterface
+     * @return \mosaxiv\Socialite\One\AbstractProvider|\mosaxiv\Socialite\Two\AbstractProvider
      */
     public function driver(string $driver)
     {
