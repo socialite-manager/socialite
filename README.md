@@ -1,7 +1,7 @@
 # Socialite
 
-[![Build Status](https://travis-ci.org/mosaxiv/socialite.svg?branch=master)](https://travis-ci.org/mosaxiv/socialite)
-[![Latest Stable Version](https://poser.pugx.org/mosaxiv/socialite/version)](https://packagist.org/packages/mosaxiv/socialite)
+[![Build Status](https://travis-ci.org/socialite-manager/socialite.svg?branch=master)](https://travis-ci.org/socialite-manager/socialite)
+[![Latest Stable Version](https://poser.pugx.org/socialite-manager/socialite/version)](https://packagist.org/packages/socialite-manager/socialite)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 ## Introduction
