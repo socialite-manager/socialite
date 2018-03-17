@@ -70,20 +70,32 @@ class SocialiteManager
      */
     public function driver(string $driver)
     {
-        if (!isset($this->drivers[$driver])) {
-            throw new \InvalidArgumentException("Driver not supported.");
+        if (isset($this->drivers[$driver])) {
+            $provider = $driver . 'Provider';
+            if (method_exists($this, $provider)) {
+                return $this->$provider();
+            }
+
+            return new $this->drivers[$driver](
+                $this->getRequest(),
+                $this->config,
+                $this->getSession()
+            );
         }
 
-        $provider = $driver . 'Provider';
-        if (method_exists($this, $provider)) {
-            return $this->$provider();
+        if (class_exists($driver)) {
+            $driver = new $driver(
+                $this->getRequest(),
+                $this->config,
+                $this->getSession()
+            );
+
+            if ($driver instanceof Two\AbstractProvider) {
+                return $driver;
+            }
         }
 
-        return new $this->drivers[$driver](
-            $this->getRequest(),
-            $this->config,
-            $this->getSession()
-        );
+        throw new \InvalidArgumentException("Driver not supported.");
     }
 
     /**

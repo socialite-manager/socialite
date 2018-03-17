@@ -34,7 +34,8 @@
     "scripts": {
         "check": [
             "@cs-check",
-            "@test"
+            "@test",
+            "@analyse"
         ],
         "test": "phpunit",
         "cs-check": "phpcs --standard=PSR2 --colors -p ./src ./tests",
