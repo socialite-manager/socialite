@@ -31,7 +31,7 @@ PHP >= 7.0
 ## Installation
 
 ```
-composer require mosaxiv/socialite
+composer require socialite/socialite
 ```
 
 ## Basic Usage
