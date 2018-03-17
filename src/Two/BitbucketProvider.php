@@ -61,7 +61,7 @@ class BitbucketProvider extends AbstractProvider
         try {
             $response = $this->getHttpClient()->get($emailsUrl);
         } catch (\Exception $e) {
-            return;
+            return null;
         }
         $emails = json_decode($response->getBody(), true);
         foreach ($emails['values'] as $email) {

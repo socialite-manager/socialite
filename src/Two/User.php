@@ -15,14 +15,14 @@ class User extends AbstractUser
     /**
      * The refresh token that can be exchanged for a new access token.
      *
-     * @var string
+     * @var null|string
      */
     public $refreshToken;
 
     /**
      * The number of seconds the access token is valid for.
      *
-     * @var int
+     * @var null|int
      */
     public $expiresIn;
 

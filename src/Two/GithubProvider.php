@@ -60,7 +60,7 @@ class GithubProvider extends AbstractProvider
                 $this->getRequestOptions()
             );
         } catch (\Exception $e) {
-            return;
+            return null;
         }
         foreach (json_decode($response->getBody(), true) as $email) {
             if ($email['primary'] && $email['verified']) {

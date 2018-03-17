@@ -12,12 +12,15 @@ matrix:
   include:
     - php: 7.0
       env: CS=1
+      env: ANALYSE=0
 
     - php: 7.1
       env: CS=0
+      env: ANALYSE=0
 
     - php: 7.2
       env: CS=0
+      env: ANALYSE=1
 
 before_script:
   - phpenv config-rm xdebug.ini
@@ -27,6 +30,7 @@ before_script:
 script:
   - composer test
   - if [[ $CS = 1 ]]; then composer cs-check; fi
+  - if [[ $ANALYSE = 1 ]]; then composer analyse; fi
 
 notifications:
   email: false
