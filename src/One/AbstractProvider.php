@@ -1,10 +1,10 @@
 <?php
 
-namespace mosaxiv\Socialite\One;
+namespace Socialite\One;
 
-use mosaxiv\Socialite\ProviderInterface;
-use mosaxiv\Socialite\SessionTrait;
-use mosaxiv\Socialite\Util\A;
+use Socialite\ProviderInterface;
+use Socialite\SessionTrait;
+use Socialite\Util\A;
 use Psr\Http\Message\ServerRequestInterface;
 use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\RedirectResponse as Redirect;
@@ -91,7 +91,7 @@ abstract class AbstractProvider implements ProviderInterface
      *
      * @param string $token
      * @param string $secret
-     * @return \mosaxiv\Socialite\One\User
+     * @return \Socialite\One\User
      */
     public function userFromTokenAndSecret($token, $secret)
     {

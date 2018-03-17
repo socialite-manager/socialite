@@ -1,11 +1,11 @@
 <?php
 
-namespace mosaxiv\Socialite\Two;
+namespace Socialite\Two;
 
 use GuzzleHttp\Client;
-use mosaxiv\Socialite\ProviderInterface;
-use mosaxiv\Socialite\SessionTrait;
-use mosaxiv\Socialite\Util\A;
+use Socialite\ProviderInterface;
+use Socialite\SessionTrait;
+use Socialite\Util\A;
 use Psr\Http\Message\ServerRequestInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse as Redirect;
 use Zend\Diactoros\Response\RedirectResponse as psr7Redirect;
@@ -135,7 +135,7 @@ abstract class AbstractProvider implements ProviderInterface
      * Map the raw user array to a Socialite User instance.
      *
      * @param array $user
-     * @return \mosaxiv\Socialite\Two\User
+     * @return \Socialite\Two\User
      */
     abstract protected function mapUserToObject(array $user);
 
@@ -230,7 +230,7 @@ abstract class AbstractProvider implements ProviderInterface
      * Get a Social User instance from a known access token.
      *
      * @param string $token
-     * @return \mosaxiv\Socialite\Two\User
+     * @return \Socialite\Two\User
      */
     public function userFromToken(string $token)
     {

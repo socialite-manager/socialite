@@ -1,9 +1,9 @@
 <?php
 
-namespace mosaxiv\Socialite\Tests\Util;
+namespace Socialite\Tests\Util;
 
 use PHPUnit\Framework\TestCase;
-use mosaxiv\Socialite\Util\A;
+use Socialite\Util\A;
 
 class ATest extends TestCase
 {

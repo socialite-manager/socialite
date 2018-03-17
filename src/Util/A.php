@@ -1,6 +1,6 @@
 <?php
 
-namespace mosaxiv\Socialite\Util;
+namespace Socialite\Util;
 
 class A
 {

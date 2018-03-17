@@ -1,12 +1,12 @@
 <?php
-namespace mosaxiv\Socialite;
+namespace Socialite;
 
-use mosaxiv\Socialite\One\TwitterProvider;
-use mosaxiv\Socialite\Two\BitbucketProvider;
-use mosaxiv\Socialite\Two\FacebookProvider;
-use mosaxiv\Socialite\Two\GithubProvider;
-use mosaxiv\Socialite\Two\GoogleProvider;
-use mosaxiv\Socialite\Two\LinkedInProvider;
+use Socialite\One\TwitterProvider;
+use Socialite\Two\BitbucketProvider;
+use Socialite\Two\FacebookProvider;
+use Socialite\Two\GithubProvider;
+use Socialite\Two\GoogleProvider;
+use Socialite\Two\LinkedInProvider;
 use Symfony\Component\HttpFoundation\Session\Session;
 use League\OAuth1\Client\Server\Twitter as TwitterServer;
 use Zend\Diactoros\ServerRequestFactory;
@@ -66,7 +66,7 @@ class SocialiteManager
      * Get a driver instance.
      *
      * @param string $driver
-     * @return \mosaxiv\Socialite\One\AbstractProvider|\mosaxiv\Socialite\Two\AbstractProvider
+     * @return \Socialite\One\AbstractProvider|\Socialite\Two\AbstractProvider
      */
     public function driver(string $driver)
     {
@@ -89,7 +89,7 @@ class SocialiteManager
     /**
      * Create an instance of the specified driver.
      *
-     * @return \mosaxiv\Socialite\One\AbstractProvider
+     * @return \Socialite\One\AbstractProvider
      */
     protected function twitterProvider()
     {

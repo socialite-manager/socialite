@@ -1,14 +1,14 @@
 <?php
 
-namespace mosaxiv\Socialite\Tests;
+namespace Socialite\Tests;
 
-use mosaxiv\Socialite\One\TwitterProvider;
-use mosaxiv\Socialite\Socialite;
-use mosaxiv\Socialite\Two\BitbucketProvider;
-use mosaxiv\Socialite\Two\FacebookProvider;
-use mosaxiv\Socialite\Two\GithubProvider;
-use mosaxiv\Socialite\Two\GoogleProvider;
-use mosaxiv\Socialite\Two\LinkedInProvider;
+use Socialite\One\TwitterProvider;
+use Socialite\Socialite;
+use Socialite\Two\BitbucketProvider;
+use Socialite\Two\FacebookProvider;
+use Socialite\Two\GithubProvider;
+use Socialite\Two\GoogleProvider;
+use Socialite\Two\LinkedInProvider;
 use PHPUnit\Framework\TestCase;
 
 class SocialiteTest extends TestCase

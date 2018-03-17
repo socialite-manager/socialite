@@ -1,5 +1,5 @@
 <?php
-namespace mosaxiv\Socialite\Two;
+namespace Socialite\Two;
 
 use InvalidArgumentException;
 

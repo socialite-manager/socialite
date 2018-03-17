@@ -1,12 +1,12 @@
 <?php
-namespace mosaxiv\Socialite;
+namespace Socialite;
 
 class Socialite
 {
     /**
      * @param string $driver
      * @param array $config
-     * @return \mosaxiv\Socialite\One\AbstractProvider|\mosaxiv\Socialite\Two\AbstractProvider
+     * @return \Socialite\One\AbstractProvider|\Socialite\Two\AbstractProvider
      */
     public static function driver(string $driver, array $config)
     {

@@ -1,5 +1,5 @@
 <?php
-namespace mosaxiv\Socialite;
+namespace Socialite;
 
 use ArrayAccess;
 

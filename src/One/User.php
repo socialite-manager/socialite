@@ -1,7 +1,7 @@
 <?php
-namespace mosaxiv\Socialite\One;
+namespace Socialite\One;
 
-use mosaxiv\Socialite\AbstractUser;
+use Socialite\AbstractUser;
 
 class User extends AbstractUser
 {

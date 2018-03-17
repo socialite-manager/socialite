@@ -1,6 +1,6 @@
 <?php
 
-namespace mosaxiv\Socialite;
+namespace Socialite;
 
 trait SessionTrait
 {

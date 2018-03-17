@@ -1,7 +1,7 @@
 <?php
-namespace mosaxiv\Socialite\Two;
+namespace Socialite\Two;
 
-use mosaxiv\Socialite\Util\A;
+use Socialite\Util\A;
 
 class GithubProvider extends AbstractProvider
 {
