@@ -50,7 +50,7 @@ $config = [
 `oath.php`
 
 ```php
-use mosaxiv\Socialite\Socialite;
+use Socialite\Socialite;
 
 Socialite::driver('twitter', $config)->redirect();
 ```
@@ -58,7 +58,7 @@ Socialite::driver('twitter', $config)->redirect();
 `callback.php`
 
 ```php
-use mosaxiv\Socialite\Socialite;
+use Socialite\Socialite;
 
 $user = Socialite::driver('twitter', $config)->user();
 
