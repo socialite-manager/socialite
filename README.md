@@ -12,7 +12,7 @@ It possible to use it with various frameworks and middleware.
 It is compatible with laravel/socialite.  
 You can check the [Document](https://laravel.com/docs/5.5/socialite) of laravel.
 
-## Providers
+## Core Providers
 
 * twitter
 * github
@@ -20,6 +20,10 @@ You can check the [Document](https://laravel.com/docs/5.5/socialite) of laravel.
 * facebook
 * bitbucket
 * linkedin
+
+## other
+
+* [Instagram](https://github.com/socialite-manager/Instagram-Provider)
 
 ## Requirement
 
