@@ -21,9 +21,10 @@ You can check the [Document](https://laravel.com/docs/5.5/socialite) of laravel.
 * bitbucket
 * linkedin
 
-## other
+## other Providers
 
 * [Instagram](https://github.com/socialite-manager/Instagram-Provider)
+* Add more...
 
 ## Requirement
 
