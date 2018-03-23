@@ -24,6 +24,10 @@ You can check the [Document](https://laravel.com/docs/5.5/socialite) of laravel.
 ## other Providers
 
 * [Instagram](https://github.com/socialite-manager/Instagram-Provider)
+* [Line](https://github.com/socialite-manager/Line-Provider)
+* [VKontakte](https://github.com/socialite-manager/VKontakte-Provider)
+* [Weixin](https://github.com/socialite-manager/Weixin-Provider)
+* [QQ](https://github.com/socialite-manager/QQ-Provider)
 * Add more...
 
 ## Requirement
