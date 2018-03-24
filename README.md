@@ -30,6 +30,9 @@ You can check the [Document](https://laravel.com/docs/5.5/socialite) of laravel.
 * [QQ](https://github.com/socialite-manager/QQ-Provider)
 * [Weibo](https://github.com/socialite-manager/Weibo-Provider)
 * [Twitch](https://github.com/socialite-manager/Twitch-Provider)
+* [Slack](https://github.com/socialite-manager/Slack-Provider)
+* [Discord](https://github.com/socialite-manager/Discord-Provider)
+* [Dropbox](https://github.com/socialite-manager/Dropbox-Provider)
 * Add more...
 
 ## Requirement
