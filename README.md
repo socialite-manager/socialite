@@ -35,6 +35,8 @@ You can check the [Document](https://laravel.com/docs/5.5/socialite) of laravel.
 * [Dropbox](https://github.com/socialite-manager/Dropbox-Provider)
 * [Yahoo](https://github.com/socialite-manager/Yahoo-Provider)
 * [Spotify](https://github.com/socialite-manager/Spotify-Provider)
+* [GitLab](https://github.com/socialite-manager/GitLab-Provider)
+* [Yandex](https://github.com/socialite-manager/Yandex-Provider)
 * Add more...
 
 ## Requirement
