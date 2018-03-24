@@ -28,6 +28,8 @@ You can check the [Document](https://laravel.com/docs/5.5/socialite) of laravel.
 * [VKontakte](https://github.com/socialite-manager/VKontakte-Provider)
 * [Weixin](https://github.com/socialite-manager/Weixin-Provider)
 * [QQ](https://github.com/socialite-manager/QQ-Provider)
+* [Weibo](https://github.com/socialite-manager/Weibo-Provider)
+* [Twitch](https://github.com/socialite-manager/Twitch-Provider)
 * Add more...
 
 ## Requirement
