@@ -33,6 +33,8 @@ You can check the [Document](https://laravel.com/docs/5.5/socialite) of laravel.
 * [Slack](https://github.com/socialite-manager/Slack-Provider)
 * [Discord](https://github.com/socialite-manager/Discord-Provider)
 * [Dropbox](https://github.com/socialite-manager/Dropbox-Provider)
+* [Yahoo](https://github.com/socialite-manager/Yahoo-Provider)
+* [Spotify](https://github.com/socialite-manager/Spotify-Provider)
 * Add more...
 
 ## Requirement
