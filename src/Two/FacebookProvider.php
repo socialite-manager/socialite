@@ -72,8 +72,10 @@ class FacebookProvider extends AbstractProvider
             'form_params' => $this->getTokenFields($code),
         ]);
         $data = json_decode($response->getBody(), true);
-        $data['expires_in'] = $data['expires'];
-        unset($data['expires']);
+        if (isset($data['expires'])) {
+            $data['expires_in'] = $data['expires'];
+            unset($data['expires']);
+        }
 
         return $data;
     }
