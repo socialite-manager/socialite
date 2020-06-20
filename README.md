@@ -4,7 +4,7 @@
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 ## Introduction
-
+The repository is forked from [socialite-manager/socialite](https://github.com/socialite-manager/socialite) and contents some update for Google API.
 This is inspired by laravel/socialite, you can easily use it without Laravel.
 
 It possible to use it with various frameworks and middleware.
@@ -48,7 +48,7 @@ PHP >= 7.0
 ## Installation
 
 ```
-composer require socialite-manager/socialite
+composer require farzak/socialite
 ```
 
 ## Basic Usage
