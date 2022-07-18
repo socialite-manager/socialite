@@ -1,6 +1,5 @@
 {
-    "name": "timdue/socialite",
-    "version": "1.0.2",
+    "name": "socialite-manager/socialite",
     "description": "OAuth 1 & OAuth 2 libraries.",
     "keywords": [
         "oauth",
