@@ -9,7 +9,7 @@ use Socialite\Two\GoogleProvider;
 use Socialite\Two\LinkedInProvider;
 use Symfony\Component\HttpFoundation\Session\Session;
 use League\OAuth1\Client\Server\Twitter as TwitterServer;
-use Zend\Diactoros\ServerRequestFactory;
+use Laminas\Diactoros\ServerRequestFactory;
 
 class SocialiteManager
 {

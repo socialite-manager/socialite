@@ -9,9 +9,9 @@
     "require": {
         "php": ">=7.0.0",
         "guzzlehttp/guzzle": "^6.0",
+        "laminas/laminas-diactoros": "^2.13",
         "league/oauth1-client": "^1.0",
-        "symfony/http-foundation": "^3.0",
-        "zendframework/zend-diactoros": "^1.7"
+        "symfony/http-foundation": "^3.0"
     },
     "require-dev": {
         "phpstan/phpstan": "^0.9.2",

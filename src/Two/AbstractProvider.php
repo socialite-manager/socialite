@@ -8,7 +8,7 @@ use Socialite\SessionTrait;
 use Socialite\Util\A;
 use Psr\Http\Message\ServerRequestInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse as Redirect;
-use Zend\Diactoros\Response\RedirectResponse as psr7Redirect;
+use Laminas\Diactoros\Response\RedirectResponse as psr7Redirect;
 
 abstract class AbstractProvider implements ProviderInterface
 {

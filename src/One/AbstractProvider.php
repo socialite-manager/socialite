@@ -10,7 +10,7 @@ use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\RedirectResponse as Redirect;
 use League\OAuth1\Client\Server\Server;
 use League\OAuth1\Client\Credentials\TokenCredentials;
-use Zend\Diactoros\Response\RedirectResponse as psr7Redirect;
+use Laminas\Diactoros\Response\RedirectResponse as psr7Redirect;
 
 abstract class AbstractProvider implements ProviderInterface
 {
