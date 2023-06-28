@@ -33,10 +33,10 @@ class GithubProvider extends AbstractProvider
      */
     protected function getUserByToken(string $token)
     {
-        $userUrl = 'https://api.github.com/user?access_token=' . $token;
+        $userUrl = 'https://api.github.com/user';
         $response = $this->getHttpClient()->get(
             $userUrl,
-            $this->getRequestOptions()
+            $this->getRequestOptions($token)
         );
         $user = json_decode($response->getBody(), true);
         if (in_array('user:email', $this->scopes)) {
@@ -53,11 +53,11 @@ class GithubProvider extends AbstractProvider
      */
     protected function getEmailByToken(string $token)
     {
-        $emailsUrl = 'https://api.github.com/user/emails?access_token=' . $token;
+        $emailsUrl = 'https://api.github.com/user/emails';
         try {
             $response = $this->getHttpClient()->get(
                 $emailsUrl,
-                $this->getRequestOptions()
+                $this->getRequestOptions($token)
             );
         } catch (\Exception $e) {
             return null;
@@ -88,11 +88,12 @@ class GithubProvider extends AbstractProvider
      *
      * @return array
      */
-    protected function getRequestOptions()
+    protected function getRequestOptions(string $token)
     {
         return [
             'headers' => [
                 'Accept' => 'application/vnd.github.v3+json',
+                'Authorization' => 'Bearer ' . $token
             ],
         ];
     }
